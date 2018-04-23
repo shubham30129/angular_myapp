@@ -1,0 +1,114 @@
+<body class="cbp-spmenu-push">
+  <!--left-fixed -navigation-->
+  <app-menu></app-menu>
+  <!--left-fixed -navigation-->
+  <!-- header-starts -->
+  <app-head></app-head>
+  <!-- //header-ends -->
+  <!-- main content start-->
+  <div id="page-wrapper">
+    <div class="main-page">
+      <div class="tables">
+        <h3 class="title1">Tables</h3>
+        <div class="bs-example widget-shadow" data-example-id="hoverable-table">
+          <button class="btn btn-primary add_btn " data-target="#addCategoryModal" data-toggle="modal" >Add New Category
+          </button>
+          <table id="example" class="table table-hover" >
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let i of categoryService.data; let j=index">
+              <th scope="row">{{ j+1 }}</th>
+              <td>{{ i.category_name }}</td>
+              <td>
+                <div class="dropdown">
+                  <a href="#"  data-toggle="dropdown" aria-expanded="false">
+                    <p><span style="padding: 5px">Action</span><i class="fa fa-ellipsis-v mail-icon"></i></p>
+                  </a>
+                  <ul class="dropdown-menu float-right">
+                    <li data-toggle="collapse"  >
+                      <a role="button" data-toggle="modal" data-target="#addCategoryModal" (click)='edit(i.id)'
+                      >
+                        <i class="fa fa-edit"></i>
+                        Edit
+                      </a>
+                    </li>
+                    <li >
+                      <a  class="font-red" (click)="delete(i.id)">
+                        <i class="fa fa-trash-o mail-icon"></i>
+                        Delete
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Model -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" *ngIf=" showModel ">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="exampleModalLabel">Add New Category</h4>
+          </div>
+          <div class="modal-body">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+              <div class="form-group">
+                <label for="category" class="control-label">Category :</label>
+                <input type="hidden" class="form-control" id="id" name="id" #category="ngModel" [(ngModel)]="id1" required  >
+                <input type="text" class="form-control" id="category" name="category" #category="ngModel" [(ngModel)]="cat" required  >
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"  *ngIf="!editMode">Add Category</button>
+                <button type="button" class="btn btn-primary"  *ngIf="editMode" (click)="update()">Update Category</button>
+
+
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Model End -->
+  </div>
+  <!--footer-->
+
+
+  <script type="text/javascript">
+    function del() {
+      bootbox.confirm({
+        title: "Destroy planet?",
+        message: "Do you want to activate the Deathstar now? This cannot be undone.",
+        buttons: {
+          cancel: {
+            label: '<i class="fa fa-times"></i> Cancel'
+          },
+          confirm: {
+            label: '<i class="fa fa-check"></i> Confirm'
+          }
+        },
+        callback: function (result) {
+          console.log('This was logged in the callback: ' + result);
+        }
+      });
+    }
+
+  </script>
+</body>

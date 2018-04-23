@@ -1,0 +1,28 @@
+
+
+
+<div class="form" >
+
+  <form #f='ngForm'  (ngSubmit)='login(f)'>
+    <div class="back"> <span><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></span></div>
+    <div class="inputs"><span class="has-error">{{ msg }}</span></div>
+    <div class="inputs">
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" id="email" name="email" #email="ngModel" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" name="pwd" #pwd="ngModel" ngModel>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </form>
+</div>
+<p class="warning"></p>
+
+
+
+
+
+
